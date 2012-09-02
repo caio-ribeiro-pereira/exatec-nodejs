@@ -1,0 +1,15 @@
+#connect_status{
+	width: 50px;
+	height: 50px;
+	border: 1px solid #333;
+}
+#main_login{
+	margin: 0 auto;
+	width: 25%;
+	height: auto;
+	padding: 10px 20px;
+	border: 1px solid #333;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+}

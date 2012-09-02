@@ -1,0 +1,9 @@
+extends layout
+block content
+	h1 Aplicações Real-time com Node.js
+	#connect_status
+	script
+		var socket = io.connect('#{host}');
+		socket.on('public', function(data){
+			$('#connect_status').css('background-color', data.color);
+		});

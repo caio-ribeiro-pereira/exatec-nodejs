@@ -1,0 +1,11 @@
+{
+  "name": "exatec",
+  "description": "Aplicações Real-time com Node.js | Exatec",
+  "version": "0.0.1",
+  "author": "Caio Ribeiro Pereira <caio.ribeiro.pereira@gmail.com>",
+  "dependencies": {
+    "express": "x.x.x",
+    "jade": "x.x.x",
+    "socket.io": "x.x.x"
+  }
+}
