@@ -5,7 +5,9 @@ var express = require('express')
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server);
 
-server.listen(3000);
+server.listen(3000, function(){
+	console.log('RealSlider running on port 3000');
+});
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
@@ -24,16 +26,25 @@ app.get('/login', function(req, res){
 });
 
 app.post('/admin', function(req, res){
-	if(auth(req.body.user))
+	if(auth.validating(req.body.user))
 		res.render('admin', {host: 'http://' + req.headers.host});
 	res.redirect('/');
 });
 
-
-var colors = ['#00FF00', '#00FFFF', '#0000FF', '#FFFF00'];
-
 io.sockets.on('connection', function(socket){
-	socket.emit('online', {color: colors[Math.floor(Math.random() * colors.length)]});
-	socket.on('slide', function(){});
-	socket.on('disconnect', function(){});
+	socket.on('public_connection', function(callback){
+		callback();
+	});
+	socket.on('admin_connection', function(callback){
+		socket.broadcast.emit('admin_online');
+		callback();
+	});
+	socket.on('admin_slide', function(data, callback){
+		console.log(data);
+		socket.broadcast.emit('public_slide', {next: data.next});
+		callback();
+	});
+	socket.on('admin_disconnection', function(){
+		socket.broadcast.emit('admin_offline');
+	});
 });

@@ -2,8 +2,21 @@ extends layout
 block content
 	h1 Aplicações Real-time com Node.js
 	#connect_status
+		#offline Offline
+		#online Conectado
+		#admin Tem Admin
+	include _slides
 	script
-		var socket = io.connect('#{host}');
-		socket.on('public', function(data){
-			$('#connect_status').css('background-color', data.color);
+		$('#slide_1').show();
+		var socket = io.connect();
+		socket.emit('public_connection', function(){
+			$('#offline').hide();
+			$('#online').show();
+			$('#admin').hide();
+		});
+		socket.on('admin_online', function(){
+			$('#admin').show();
+		});
+		socket.on('admin_offline', function(){
+			$('#admin').hide();
 		});

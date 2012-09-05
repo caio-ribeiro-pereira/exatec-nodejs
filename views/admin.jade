@@ -3,8 +3,15 @@ block content
 	h1 Aplicações Real-time com Node.js
 	h3 Admin
 	#connect_status
+		#offline Admin Offline
+		#online Admin Conectado
+	include _slides
 	script
-		var socket = io.connect('#{host}');
-		socket.on('admin', function(data){
-			$('#connect_status').css('background-color', data.color);
+		var socket = io.connect();
+		socket.emit('admin_connection', function(){
+			$('#offline').hide();
+			$('#online').show();
 		});
+		$(window).on('unload', function(){
+			socket.emit('admin_disconnection');
+		});		

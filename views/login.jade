@@ -5,9 +5,13 @@ block content
 		h3 Login
 		form(action='/admin', method='post')
 			label Login:
-				input(type='text', name='user[login]', maxlength='10')
+				input(type='text', name='user[login]', maxlength='10', id='login')
 			br
 			label Password:
 				input(type='password', name='user[password]', maxlength='10')
 			br
 			button(type='submit') Login
+	script
+		$(function(){
+			$('#login').focus();
+		});
