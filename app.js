@@ -6,9 +6,7 @@ var express = require('express')
   , io = require('socket.io').listen(server);
 
 app.listen((process.env.PORT || 3000), function() {
-	console.log("Exatec Node.js em %s:%d em modo %s", app.address().address
-												 , app.address().port
-												 , app.settings.env);
+	console.log("Executando Exatec Node.js");
 });
 
 app.use(express.bodyParser());
