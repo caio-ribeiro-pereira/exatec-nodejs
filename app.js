@@ -31,6 +31,10 @@ app.post('/admin', function(req, res){
 	res.redirect('/');
 });
 
+io.configure(function () { 
+	io.set("transports", ["xhr-polling"]); 
+	io.set("polling duration", 10); 
+});
 io.sockets.on('connection', function(socket){
 	socket.on('admin_connection', function(){
 		socket.broadcast.emit('admin_online');
