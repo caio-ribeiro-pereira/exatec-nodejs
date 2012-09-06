@@ -5,10 +5,6 @@ var express = require('express')
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server);
 
-app.listen((process.env.PORT || 3000), function() {
-	console.log("Executando Exatec Node.js");
-});
-
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -48,4 +44,8 @@ io.sockets.on('connection', function(socket){
 	socket.on('admin_disconnection', function(){
 		socket.broadcast.emit('admin_offline');
 	});
+});
+
+app.listen((process.env.PORT || 3000), function() {
+	console.log("Executando Exatec Node.js");
 });
