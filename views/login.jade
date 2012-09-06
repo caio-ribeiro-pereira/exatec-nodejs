@@ -1,16 +1,16 @@
 extends layout
 block content
-	h1 Acesso controle da apresentação
+	h2 Controle Remoto
 	#main_login
 		form(action='/admin', method='post')
-			label Login:<br>
-			input(type='text', name='user[login]', maxlength='10', id='login')
+			label Login<br>
+			input(type='text', name='user[login]', maxlength='10', size='15')
 			br
-			label Password: <br>
-			input(type='password', name='user[password]', maxlength='10')
+			label Password<br>
+			input(type='password', name='user[password]', maxlength='10', size='15')
 			br
-			button(type='submit') Login
+			button(type='submit') Entrar
 	script
 		$(function(){
-			$('#login').focus();
+			$('input').first().focus();
 		});

@@ -1,15 +1,9 @@
+body{
+	font: 14px/1.2 Verdana;
+}
 #nav_presentation{
 	width: 99%;
 	margin: 0 auto;
-}
-#nav_presentation button {
-	font-size: 20px;
-	border: 1px solid #333;
-	background: #fff;
-	padding: 4px;
-	border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
 }
 .presentation{ 
 	width: 1016px;
@@ -27,10 +21,22 @@
 	display: none;
 }
 #main_login{
-	width: 25%;
+	width: 120px;
 	height: auto;
 	padding: 10px 20px;
 	border: 1px solid #333;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+}
+input {
+	line-height: 2em;
+}
+button {
+	font-size: 20px;
+	border: 1px solid #333;
+	background: #fff;
+	padding: 4px;
 	border-radius: 7px;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
