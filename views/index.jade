@@ -1,22 +1,45 @@
 extends layout
 block content
-	h1 Aplicações Real-time com Node.js
-	#connect_status
-		#offline Offline
-		#online Conectado
-		#admin Tem Admin
+	h1 Real-time com Node.js
+	#admin Pareado com palestrante
 	include _slides
+	include _buttons
 	script
-		$('#slide_1').show();
-		var socket = io.connect();
-		socket.emit('public_connection', function(){
-			$('#offline').hide();
-			$('#online').show();
-			$('#admin').hide();
+		var slide = $('.slide');
+		var index = 0;
+		var next = function(){
+			slide.eq(index++).hide();
+			if(index >= slide.length){index = 0;}
+			slide.eq(index).show();
+		};
+		var prev = function(){
+			slide.eq(index--).hide();
+			if(index < 0){index = slide.length - 1;}
+			slide.eq(index).show();
+		};
+		$(function(){
+			slide.eq(index).show();
+			$('#next').click(function(){
+				next();	
+			});
+			$('#prev').click(function(){
+				prev();
+			});
 		});
+		var socket = io.connect();
 		socket.on('admin_online', function(){
 			$('#admin').show();
+			$('#nav_presentation').hide();
 		});
 		socket.on('admin_offline', function(){
 			$('#admin').hide();
+			$('#nav_presentation').show();
+		});
+		socket.on('public_slide_next', function(){
+			$('#nav_presentation').hide();
+			next();
+		});
+		socket.on('public_slide_prev', function(){
+			$('#nav_presentation').hide();
+			prev();
 		});

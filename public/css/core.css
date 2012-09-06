@@ -1,10 +1,32 @@
-#connect_status{
-	width: 50px;
-	height: 50px;
+#nav_presentation{
+	width: 99%;
+	margin: 0 auto;
+}
+#nav_presentation button {
+	font-size: 20px;
+	border: 1px solid #333;
+	background: #fff;
+	padding: 4px;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+}
+.presentation{ 
+	width: 1016px;
+	height: 750px;
 	border: 1px solid #333;
 }
+.slide {
+	font-size: 48px;
+	padding: 20px 40px;
+	display: none;
+}
+#admin{
+	font-weight: bold;
+	color: #009;
+	display: none;
+}
 #main_login{
-	margin: 0 auto;
 	width: 25%;
 	height: auto;
 	padding: 10px 20px;
@@ -12,18 +34,4 @@
 	border-radius: 7px;
 	-webkit-border-radius: 7px;
 	-moz-border-radius: 7px;
-}
-#canvas{
-	width: 400px;
-	height: 100px;
-	margin: 20px auto;
-	border: 1px solid #333;
-	border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
-}
-#canvas > div {
-	font-size: 48px;
-	padding: 20px 40px;
-	display: none;
 }

@@ -1,16 +1,15 @@
 extends layout
 block content
-	h1 Aplicações Real-time com Node.js
-	h3 Admin
-	#connect_status
-		#offline Admin Offline
-		#online Admin Conectado
-	include _slides
+	h1 Controle da palestra
+	include _buttons
 	script
 		var socket = io.connect();
-		socket.emit('admin_connection', function(){
-			$('#offline').hide();
-			$('#online').show();
+		socket.emit('admin_connection');
+		$('#next').click(function(){
+			socket.emit('admin_slide_next');
+		});
+		$('#prev').click(function(){
+			socket.emit('admin_slide_prev');
 		});
 		$(window).on('unload', function(){
 			socket.emit('admin_disconnection');

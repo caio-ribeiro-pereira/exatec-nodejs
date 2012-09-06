@@ -32,17 +32,14 @@ app.post('/admin', function(req, res){
 });
 
 io.sockets.on('connection', function(socket){
-	socket.on('public_connection', function(callback){
-		callback();
-	});
-	socket.on('admin_connection', function(callback){
+	socket.on('admin_connection', function(){
 		socket.broadcast.emit('admin_online');
-		callback();
 	});
-	socket.on('admin_slide', function(data, callback){
-		console.log(data);
-		socket.broadcast.emit('public_slide', {next: data.next});
-		callback();
+	socket.on('admin_slide_next', function(){
+		socket.broadcast.emit('public_slide_next');
+	});
+	socket.on('admin_slide_prev', function(){
+		socket.broadcast.emit('public_slide_prev');
 	});
 	socket.on('admin_disconnection', function(){
 		socket.broadcast.emit('admin_offline');
