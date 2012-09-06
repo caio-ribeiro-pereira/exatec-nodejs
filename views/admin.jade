@@ -3,7 +3,7 @@ block content
 	h1 Controle da palestra
 	include _buttons
 	script
-		var socket = io.connect();
+		var socket = io.connect('#{host}');
 		socket.emit('admin_connection');
 		$('#next').click(function(){
 			socket.emit('admin_slide_next');
