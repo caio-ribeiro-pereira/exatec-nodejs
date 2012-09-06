@@ -5,8 +5,10 @@ var express = require('express')
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server);
 
-server.listen(3000, function(){
-	console.log('RealSlider running on port 3000');
+app.listen((process.env.PORT || 3000), function() {
+	console.log("Exatec Node.js em %s:%d em modo %s", app.address().address
+												 , app.address().port
+												 , app.settings.env);
 });
 
 app.use(express.bodyParser());
