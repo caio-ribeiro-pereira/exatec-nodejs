@@ -8,7 +8,7 @@ block content
 			- var next = i+1 >= slides.length ? i : i+1;
 			- var prev = i-1 < 0 ? i : i-1;
 			.slide(data-actual='#{i}', data-next='#{next}', data-prev='#{prev}') 
-				img(src='/img/slides/#{slide}', width='1024', height='768')
+				img(src='/img/slides/Slide#{i+1}.jpg', width='1024', height='768')
 	script
 		var slide = $('.slide');
 		var body = $('body');
