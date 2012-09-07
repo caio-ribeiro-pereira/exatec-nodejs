@@ -3,6 +3,7 @@ var express = require('express')
   , http = require('http')
   , socket = require('socket.io')
   , auth = require('./lib/auth')
+  , fs = require('fs')
   , app = express();
 
 app.configure(function(){
@@ -21,8 +22,10 @@ var server = http.createServer(app).listen(port, function() {
 });
 var io = socket.listen(server);
 
+var slides = fs.readdirSync(__dirname + '/public/img/slides');
+
 app.get('/', function(req, res){
-	res.render('index', {host: 'http://' + req.headers.host});
+	res.render('index', {host: 'http://' + req.headers.host, slides: slides});
 });
 
 app.get('/login', function(req, res){

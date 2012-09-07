@@ -1,41 +1,47 @@
-@font-face {
-  font-family: 'Asap';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Asap'), local('Asap-Regular'), url(http://themes.googleusercontent.com/static/fonts/asap/v1/nvGvEwsMAvkIa6w2U-PXffesZW2xOQ-xsNqO47m55DA.woff) format('woff');
-}
-@font-face {
-  font-family: 'Asap';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Asap Bold'), local('Asap-Bold'), url(http://themes.googleusercontent.com/static/fonts/asap/v1/QGN0GG0540fyG6NL_PpOpgLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
-}
 body{
-	font: 14px/1.2 'Asap', Verdana;
+	font: 14px/1.2 Verdana;
+	margin-top: 0px;
+	background-color: #FFF;
 }
-#nav_presentation{
-	width: 99%;
+.navigation{
+	width: 128px;
+	height: 128px;
+	cursor: pointer;
+}
+.prev{
+	background: url('../img/prev.png');
+	float: left;
+}
+.next{
+	background: url('../img/next.png');
+	float: right;
+}
+.controls{
+	width: 320px;
 	margin: 0 auto;
+	text-align: center;
 }
 .presentation{ 
-	width: 1016px;
-	height: 750px;
-	border: 1px solid #333;
+	width: 1290px;
+	height: 768px;
+	margin: 0 auto;
+	text-align: center;
+}
+.presentation .navigation{
+	margin-top: 300px;
 }
 .slide {
 	font-size: 48px;
-	padding: 20px 40px;
 	display: none;
 }
-#admin{
-	font-weight: bold;
-	color: #009;
-	display: none;
+.active{
+	display: block !important;
 }
-#main_login{
-	width: 120px;
+.login{
+	width: 240px;
 	height: auto;
-	padding: 10px 20px;
+	text-align: center;
+	padding: 10px 3px 30px;
 	border: 1px solid #333;
 	border-radius: 7px;
 	-webkit-border-radius: 7px;
@@ -43,9 +49,12 @@ body{
 }
 input {
 	line-height: 2em;
+	width: 80%;
+	font-size: 16px;
 }
 button {
 	font-size: 20px;
+	width: 75%;
 	border: 1px solid #333;
 	background: #fff;
 	padding: 4px;

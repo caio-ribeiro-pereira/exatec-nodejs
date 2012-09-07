@@ -1,14 +1,16 @@
 extends layout
 block content
-	h2 Controle da palestra
-	include _buttons
+	.controls
+		h2 Controle remoto
+		.navigation.prev 
+		.navigation.next
 	script
 		var socket = io.connect('#{host}');
 		socket.emit('admin_connection');
-		$('#next').click(function(){
+		$('.next').click(function(){
 			socket.emit('admin_slide_next');
 		});
-		$('#prev').click(function(){
+		$('.prev').click(function(){
 			socket.emit('admin_slide_prev');
 		});
 		$(window).on('unload', function(){

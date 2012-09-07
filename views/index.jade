@@ -1,45 +1,55 @@
 extends layout
 block content
-	h2 Real-time com Node.js
-	#admin Pareado com palestrante
-	include _slides
-	include _buttons
+	.presentation
+		.navigation.prev 
+		.navigation.next
+		each slide, i in slides
+			- var actual = i;
+			- var next = i+1 >= slides.length ? i : i+1;
+			- var prev = i-1 < 0 ? i : i-1;
+			.slide(data-actual='#{i}', data-next='#{next}', data-prev='#{prev}') 
+				img(src='/img/slides/#{slide}', width='1024', height='768')
 	script
 		var slide = $('.slide');
-		var index = 0;
+		var body = $('body');
+		var presentation = $('.presentation');
 		var next = function(){
-			slide.eq(index++).hide();
-			if(index >= slide.length){index = 0;}
-			slide.eq(index).show();
+			var active = $('.active');
+			var actual = active.data('actual');
+			var next = active.data('next');
+			presentation.find('div[data-actual="'+actual+'"]').removeClass('active');
+			presentation.find('div[data-actual="'+next+'"]').addClass('active');
+			body.css('background-color', active.data('color'));
 		};
 		var prev = function(){
-			slide.eq(index--).hide();
-			if(index < 0){index = slide.length - 1;}
-			slide.eq(index).show();
+			var active = $('.active');
+			var actual = active.data('actual');
+			var prev = active.data('prev');
+			presentation.find('div[data-actual="'+actual+'"]').removeClass('active');
+			presentation.find('div[data-actual="'+prev+'"]').addClass('active');
+			body.css('background-color', active.data('color'));
 		};
 		$(function(){
-			slide.eq(index).show();
-			$('#next').click(function(){
+			slide.eq(0).addClass('active');
+			$('.next').click(function(){
 				next();	
 			});
-			$('#prev').click(function(){
+			$('.prev').click(function(){
 				prev();
 			});
 		});
 		var socket = io.connect('#{host}');
 		socket.on('admin_online', function(){
-			$('#admin').show();
-			$('#nav_presentation').hide();
+			$('.navigation').hide();
 		});
 		socket.on('admin_offline', function(){
-			$('#admin').hide();
-			$('#nav_presentation').show();
+			$('.navigation').show();
 		});
 		socket.on('public_slide_next', function(){
-			$('#nav_presentation').hide();
+			$('.navigation').hide();
 			next();
 		});
 		socket.on('public_slide_prev', function(){
-			$('#nav_presentation').hide();
+			$('.navigation').hide();
 			prev();
 		});

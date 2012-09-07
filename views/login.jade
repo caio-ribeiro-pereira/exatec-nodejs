@@ -1,7 +1,7 @@
 extends layout
 block content
-	h2 Controle Remoto
-	#main_login
+	.login
+		h3 Controle remoto
 		form(action='/admin', method='post')
 			label Login<br>
 			input(type='text', name='user[login]', maxlength='10', size='15')
