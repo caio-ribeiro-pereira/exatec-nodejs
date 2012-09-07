@@ -22,10 +22,10 @@ var server = http.createServer(app).listen(port, function() {
 });
 var io = socket.listen(server);
 
-var slides = fs.readdirSync(__dirname + '/public/img/slides');
-
 app.get('/', function(req, res){
-	res.render('index', {host: 'http://' + req.headers.host, slides: slides});
+	fs.readdir(__dirname + '/public/img/slides', function(err, slides){
+		res.render('index', {host: 'http://' + req.headers.host, slides: slides});	
+	});
 });
 
 app.get('/login', function(req, res){
