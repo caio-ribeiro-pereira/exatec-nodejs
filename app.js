@@ -12,7 +12,7 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
-	app.use(express.static(__dirname + '/public'));
+	app.use(express.static(__dirname + '/public', {maxAge: 7200000}));
 	app.use(express.errorHandler());
 });
 
